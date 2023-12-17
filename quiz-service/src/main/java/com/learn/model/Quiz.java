@@ -20,5 +20,5 @@ public class Quiz {
     private String title;
     private String category;
     @ElementCollection
-    private List<Integer> questionId = new ArrayList<>();
+    private List<Long> questionId = new ArrayList<>();
 }

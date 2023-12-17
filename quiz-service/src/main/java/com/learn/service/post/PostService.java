@@ -1,7 +1,9 @@
-package com.learn.service.quiz.create.service;
+package com.learn.service.post;
 
 import com.learn.config.QuizInterface;
+import com.learn.model.QuestionWrapper;
 import com.learn.model.Quiz;
+import com.learn.model.Response;
 import com.learn.repo.QuizRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class CreateService {
+public class PostService {
 
     @Autowired
     private QuizRepository quizRepository;
@@ -23,18 +25,26 @@ public class CreateService {
 
     public ResponseEntity<Quiz> createQuiz(String title, String category) {
         try {
-            List<Integer> questionIds = quizInterface.getQuestionForQuiz(category).getBody();
+            List<Long> questionIds = quizInterface.getQuestionForQuiz(category).getBody();
             Quiz quiz = new Quiz();
             quiz.setTitle(title);
             quiz.setCategory(category);
             assert questionIds != null;
             quiz.getQuestionId().addAll(questionIds);
-            log.info(quiz.toString());
             quizRepository.save(quiz);
             return new ResponseEntity<>(quiz, HttpStatus.CREATED);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Integer> submitQuiz(List<Response> response) {
+        try {
+            Integer result = quizInterface.calculateResult(response).getBody();
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+        catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
