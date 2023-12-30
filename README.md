@@ -129,28 +129,3 @@ To use this quiz application, follow these steps:
 5. Access the application via the provided endpoints.
 
 Thank you for contributing to our quiz application! Let's make learning and engagement even more accessible together.
-
-## Contribution
-
-We welcome contributions to enhance and refine our quiz application. If you'd like to contribute, please follow these steps:
-
-1. Fork the repository.
-
-2. Create a new branch for your feature or bug fix.
-   ```
-   git checkout -b feature-name
-   ```
-
-3. Make your changes and commit them.
-   ```
-   git commit -m "Your meaningful commit message"
-   ```
-
-4. Push your changes to your fork.
-   ```
-   git push origin feature-name
-   ```
-
-5. Create a pull request to merge your changes into the main repository.
-
-Thank you for contributing to our quiz application! Let's make learning and engagement even more accessible together.
